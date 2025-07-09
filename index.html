@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeniorParser - Новости о пенсионерах</title>
+</head>
+<body>
+    <h1>SeniorParser - Новости о пенсионерах</h1>
+    <div id="content">Загрузка данных...</div>
+
+    <script>
+        async function loadData() {
+            const res = await fetch('data.json');
+            const data = await res.json();
+            let html = '<ul>';
+            data.forEach(item => {
+                html += `<li><a href="${item.link}" target="_blank">${item.title}</a></li>`;
+            });
+            html += '</ul>';
+            document.getElementById('content').innerHTML = html;
+        }
+
+        loadData();
+    </script>
+</body>
+</html>
